@@ -78,3 +78,15 @@ dat <- gendat(N=10^4, timeVect=c(2, 0.005, 200),
               fnrenVect=c(52, 0.3, -0.01, -0.4, -0.2, -0.3))
 descriptive(dat)
 
+#------------------------------------------------------------------------------
+# Regressions: change scores (change ~ exposure)
+#              follow-up adjusted for baseline (post ~ exposure + pre)
+#------------------------------------------------------------------------------
+
+changeScoresRegr <- lm(change ~ cov, data=dat)
+summary(changeScoresRegr)
+coef(changeScoresRegr)
+
+followUpAdjBasRegr <- lm(fnren ~ cov + fnrenIn, data=dat)
+summary(followUpAdjBasRegr)
+coef(followUpAdjBasRegr)
